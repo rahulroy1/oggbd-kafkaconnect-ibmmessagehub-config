@@ -9,7 +9,7 @@ Functionality
 
 The Kafka Connect Handler takes change data capture operations from a source trail file and generates data structs (org.apache.kafka.connect.data.Struct) as well as the associated schemas (org.apache.kafka.connect.data.Schema). The data structs are serialized via configured converters then enqueued onto Kafka topics. The topic name used corresponds to the fully qualified source table name as obtained from the GoldenGate trail file. Individual operations consist of inserts, updates, and delete operations executed on the source RDBMS. Insert and update operation data include the after change data. Delete operations include the before change data. A primary key update is a special case for an update where one or more of the primary key(s) is/are changed. The primary key update represents a special case in that without the before image data it is not possible to determine what row is actually changing when only in possession of the after change data. The default behavior of a primary key update is to ABEND in the Kafka Connect formatter. 
 
-NOTE: In this exercise, we are going to use the sample trail file that is provided by OGG BD installation under AdapterExamples/trail/ which contains transactions for two sample two tables QASOURCE.TCUSTMER and QASOURCE.TCUSTORD and push those to IBM Message Hub.
+NOTE: In this exercise, we are going to use the sample trail file that is provided by OGG BD installation under AdapterExamples/trail/ which contains transactions for two sample two tables ```QASOURCE.TCUSTMER``` and ```QASOURCE.TCUSTORD``` and push those to IBM Message Hub.
 
 ------------------
 Supported Versions
@@ -37,13 +37,13 @@ a. Extract OGG BD binaries (123111_ggs_Adapters_<OS Type>_x64.zip) to any folder
 b. login to OGG-BD with "ggsci" in Windows or "./ggsci" in Linux
 c. Run following commands from GGSCI prompt:
 
-GGSCI (localhost.localdomain) 1> CREATE SUBDIRS
+```GGSCI (localhost.localdomain) 1> CREATE SUBDIRS
 GGSCI (localhost.localdomain) 2> EDIT PARAM MGR
 
 PORT 7801
-
+```
 d. Above should create following dirs under 'oggkafka':
-Creating subdirectories under current directory <path>/oggkafka
+```Creating subdirectories under current directory <path>/oggkafka
 
 Parameter files                <path>/oggkafka/dirprm: created
 
@@ -60,7 +60,7 @@ Database definitions files     <path>/oggkafka/dirdef: created
 Extract data files             <path>/oggkafka/dirdat: created
 
 Temporary files                <path>/oggkafka/dirtmp: created
-
+```
 
 --------------
 Configuration
@@ -94,7 +94,8 @@ Execution
 -------------
 
 Post configuration, follow below steps for execution:
-1. login to OGG-BD with "ggsci" in Windows or "./ggsci" in Linux
+
+```1. login to OGG-BD with "ggsci" in Windows or "./ggsci" in Linux
 2. Create OGG replicat
 GGSCI (localhost.localdomain) 3> add replicat kcmsghb exttrail dirdat/trail
 
@@ -103,9 +104,9 @@ GGSCI (localhost.localdomain) 3> start mgr
 GGSCI (localhost.localdomain) 3> start kcmsghb
 
 3. Check OGG log under oggkafka/dirrpt/ to see the records are read from trail file and pass through kafkaconnect handler
-
+```
 NOTE: Following log should indicate that it's working fine:
-
+```
 DEBUG 2018-05-17 21:56:09,113 [main] DEBUG (KafkaConnectProducer.java:107) - Sending a producer record to Kafka topic [gcssx_QASOURCE.TCUSTORD] using message key [null].  Message size [1055] bytes.
 TRACE 2018-05-17 21:56:09,114 [main] TRACE (AbstractDataSource.java:787) - AbstractDataSource: getCurrentTx: activeTxns size is: 1
 TRACE 2018-05-17 21:56:09,115 [main] TRACE (AbstractDataSource.java:709) - prune operation buffer: txSize was=1, new=0, buffer=0
@@ -121,5 +122,5 @@ DEBUG 2018-05-17 21:56:09,140 [main] DEBUG (AbstractHandler.java:656) - Event: h
 DEBUG 2018-05-17 21:56:09,140 [main] DEBUG (KafkaConnectProducer.java:130) - Flushing the Kafka connection.
 DEBUG 2018-05-17 21:56:09,355 [main] DEBUG (UserExitDataSource.java:589) - == JNI callback == setCheckpoint(0/5660)
 TRACE 2018-05-17 21:56:09,355 [main] TRACE (DataSourceStats.java:309) - processing events => adding=216ms; total=0:00:06.559 [total = 6 sec ]
-
+```
 4. You can run local Kafka JAVA consumer to check IBM Message hub queues to see messages being consumed by Message Hub kafka

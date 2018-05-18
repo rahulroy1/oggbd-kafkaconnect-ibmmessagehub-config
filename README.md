@@ -1,12 +1,7 @@
-# oggbd-kafkaconnect-ibmmessagehub-config
-OGG Big Data replication to IBM Message Hub via Kafka Connect
-
+# Oracle GoldenGate for Kafka Connect Handler to IBM Message Hub Version 1.0
 ***************************************************************************************************************
 This distribution only contains the config files required to connect IBM Message Hub using OGG BD Kafka Connect
 ***************************************************************************************************************
-
-Oracle GoldenGate for Kafka Connect Handler to IBM Message Hub
-Version 1.0
 
 -------------
 Functionality

@@ -66,15 +66,15 @@ Temporary files                <path>/oggkafka/dirtmp: created
 Configuration
 --------------
 
-a. Extract ogg-kafkaconnect-ibmmessagehub-connector-v1.zip to any directory in Windows or Linux. Let's name it as messagehubconnector
+a. Download and place oggbd-kafkaconnect-ibmmessagehub-config folder to any directory in Windows or Linux. 
 
 b. Copy config files to actual OGG BD installation directory i.e. oggkafka
 
-1. If you are on Windows, copy messagehubconnector/dirprm/windows/* to oggkafka/dirprm/
-2. If you are on Linux, copy messagehubconnector/dirprm/linux/* to oggkafka/dirprm/
+1. If you are on Windows, copy oggbd-kafkaconnect-ibmmessagehub-config/dirprm/windows/* to oggkafka/dirprm/
+2. If you are on Linux, copy oggbd-kafkaconnect-ibmmessagehub-config/dirprm/linux/* to oggkafka/dirprm/
 
 NOTE: 
-messagehubconnector/dirprm/<OS TYPE>/ directory contains sample configuration file for IBM Message Hub
+oggbd-kafkaconnect-ibmmessagehub-config/dirprm/<OS TYPE>/ directory contains sample configuration file for IBM Message Hub
 
 kafkaconnect-messagehub.properties – Message Hub kafkaconnect properties file
 kcmsghb.prm – sample replicat config file
